@@ -6,7 +6,7 @@
 (defn __ [& args] false)
 (def ___ '())
 
-(fact "A couple of thing about midje"
+(fact "A couple of things about midje"
       1 => 1
       (throw (Exception.)) => (throws Exception))
 
@@ -31,7 +31,7 @@
       (fnext [[1 2] [3 4]]) => [3 4]
       (fnext []) => nil)
 
-(fact "Not all functions are meant to work with sequences"
+(fact "Not all functions are meant to work with sequences, but you can always apply them"
       (apply map inc [[1 2 3]]) => [2 3 4]
       (apply str "1 2 3 " [4 " " 5 " " 6]) => "1 2 3 4 5 6")
 
@@ -40,23 +40,20 @@
         (swap! a inc)
         (deref a) => 1))
 
-(fact "dotimes stuff for side-effects"
+(fact "You want to 'do times' x with the swap! function"
       (let [a (atom 0)]
-        ; Let is incorrect you should do times x with swap! function
         (dotimes [x 10]
           (swap! a inc))
         @a => 10))
 
-(fact "doseq stuff for side-effects"
+(fact "You want to do over a seq of functions the with swap! function"
       (let [a (atom 2)]
-        ; Let is incorrect you should do times x with swap! function
         (doseq [f [inc (partial * 2)]]
           (swap! a f))
         @a => 6))
 
-(fact "doseq stuff for side-effects"
+(fact "You want to inc while not at the correct value"
       (let [a (atom 0)]
-        ; Let is incorrect you should do times x with swap! function
         (while (> 6 @a)
           (swap! a inc))
         @a => 6))
@@ -69,6 +66,7 @@
       (filter identity [1 2 3 nil 5]) => [1 2 3 5])
 
 (fact "Use map to transform each element a list"
+      (map str [1 2 3]) => ["1" "2" "3"]
       (map #(str (inc %)) [1 2 3]) => ["2" "3" "4"]
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
