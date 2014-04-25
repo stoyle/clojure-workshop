@@ -36,5 +36,5 @@
       (:help options) (exit 0 (usage summary))
       (:version options) (exit 0 "0.1.0-SNAPSHOT")
       errors (exit 1 (error-msg errors))
-      :else (assoc options :files arguments))))
+      :else (assoc options :files (seq arguments)))))
 

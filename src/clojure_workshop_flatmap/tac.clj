@@ -1,5 +1,6 @@
 (ns clojure-workshop-flatmap.tac
   (:gen-class)
+  (:import (java.util.regex Pattern))
   (:require
     [clojure-workshop-flatmap.args :as args]
     [clojure.string :as str]))
@@ -22,23 +23,34 @@
 ;; GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
 ;; Report tac translation bugs to <http://translationproject.org/team/>
 ;; For complete documentation, run: info coreutils 'tac invocation'
-;; "
+;;
 
 (defn read-file [f]
-  (str/split-lines (slurp f)))
+  (slurp f))
 
-(defn tac-file [f separator regex before]
-  (str/join \newline
-            (reverse (str/split (str/join \newline (read-file f))
-                                (re-pattern separator)))))
+(defn tac [content separator regex before]
+  (let [pattern (if regex (re-pattern separator)
+                          (Pattern/compile separator Pattern/LITERAL))]
+    (str/join separator
+              (reverse
+                (str/split content pattern)))))
 
-(defn run-tac [before regex separator files]
-  (doseq [f files]
+(defn run-tac [files separator regex before]
+  (doseq [content (map read-file files)]
     (println
-      (tac-file f separator regex before))))
+      (tac content separator regex before))))
+
+(defn read-in []
+  (str/join
+    \newline
+    (loop [acc []]
+      (let [line (read-line)]
+        (if-not line
+          acc
+          (recur (conj acc line)))))))
 
 (defn -main [& args]
   (let [{:keys [before regex separator files]} (args/parse-args args)]
     (cond
-      files (run-tac before regex separator files)
-      :else (println "you must specify files"))))
+      files (run-tac files separator regex before)
+      :else (tac (read-in) separator regex before))))
