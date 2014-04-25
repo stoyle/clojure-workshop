@@ -24,18 +24,25 @@
 ;; Report tac translation bugs to <http://translationproject.org/team/>
 ;; For complete documentation, run: info coreutils 'tac invocation'
 ;;
+;; The C implementation:
+;; http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/i386/1.0-RELEASE/ports/textutils/src/tac.c
+;;
 
 (defn read-file [f]
   (slurp f))
 
-(defn tac [content separator regex before]
+(defn tac
+  "Performs all the business logic. Converts content according to the tac spec."
+  [content separator regex before]
   (let [pattern (if regex (re-pattern separator)
                           (Pattern/compile separator Pattern/LITERAL))]
     (str/join separator
               (reverse
                 (str/split content pattern)))))
 
-(defn tac-files [files separator regex before]
+(defn tac-files
+  "Takes a seq of files, gets their contents, and runs tac on each one."
+  [files separator regex before]
   (map #(tac % separator regex before)
        (map read-file files)))
 
