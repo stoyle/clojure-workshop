@@ -35,10 +35,9 @@
               (reverse
                 (str/split content pattern)))))
 
-(defn run-tac [files separator regex before]
-  (doseq [content (map read-file files)]
-    (println
-      (tac content separator regex before))))
+(defn tac-files [files separator regex before]
+  (map #(tac % separator regex before)
+       (map read-file files)))
 
 (defn read-in []
   (str/join
@@ -50,7 +49,9 @@
           (recur (conj acc line)))))))
 
 (defn -main [& args]
-  (let [{:keys [before regex separator files]} (args/parse-args args)]
-    (cond
-      files (run-tac files separator regex before)
-      :else (tac (read-in) separator regex before))))
+  (println
+    (str/join
+      (let [{:keys [before regex separator files]} (args/parse-args args)]
+        (cond
+          files (tac-files files separator regex before)
+          :else (tac (read-in) separator regex before))))))
