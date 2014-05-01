@@ -1,5 +1,11 @@
 # Installation instructions for Clojure workshop
 
+## Java
+
+Of course you need Java. Java 6 or higher will suffice. 
+
+Get it [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+
 ## Git
 
 Hopefully you already have git, if you don't it's about time ;)
