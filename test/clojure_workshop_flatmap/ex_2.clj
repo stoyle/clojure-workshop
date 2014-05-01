@@ -31,6 +31,11 @@
       (fnext [[1 2] [3 4]]) => [3 4]
       (fnext []) => nil)
 
+(fact "Some functions blow up if you dont use them correctly"
+  (nth [1 2 3] 1) => 2
+  (nth [1 2 3] 4) => (throws Exception)
+  (nth [1 2 3] 4 nil) => nil)
+
 (fact "Not all functions are meant to work with sequences, but you can always apply them"
       (apply map inc [[1 2 3]]) => [2 3 4]
       (apply str "1 2 3 " [4 " " 5 " " 6]) => "1 2 3 4 5 6")
@@ -70,6 +75,9 @@
       (map #(str (inc %)) [1 2 3]) => ["2" "3" "4"]
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
+(fact "Map can be used with multiple collections. How do you get the index of value in a collection?"
+      (map vector (range) [:a :b :c]) => [[0 :a] [1 :b] [2 :c]])
+
 (fact "With reduce you can do more"
       (reduce
        #((memfn toUpperCase) (str %1 " " %2)) ["a" "simple" "sentence"])
@@ -78,7 +86,4 @@
               #(conj %1 ((memfn toUpperCase) %2)) [] ["a" "simple" "sentence"])
        => ["A" "SIMPLE" "SENTENCE"])
 
-(fact "Some functions blow up if you dont use them correctly"
-  (nth [1 2 3] 1) => 2
-  (nth [1 2 3] 4) => (throws Exception)
-  (nth [1 2 3] 4 nil) => nil)
+

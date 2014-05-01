@@ -108,7 +108,7 @@
        (take 2 '(1 2 3 4)) '(1 2)))
 
 
-(deftest doing-match
+(deftest doing-math
   (are [x y] (= x y)
        ; Here you should try to use the correct mathematical function to get the expected result
        (+ 1 2 3 4) 10
