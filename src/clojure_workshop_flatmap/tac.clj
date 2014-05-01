@@ -50,10 +50,9 @@
   (str/join
     \newline
     (loop [acc []]
-      (let [line (read-line)]
-        (if-not line
-          acc
-          (recur (conj acc line)))))))
+      (if-let [line (read-line)]
+        (recur (conj acc line))
+        acc))))
 
 (defn -main [& args]
   (println
