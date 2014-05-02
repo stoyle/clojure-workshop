@@ -60,6 +60,9 @@
 
 (fact "You want to do over a seq of functions the with swap! function"
       (let [a (atom 2)]
+        ; Create a vector of two functions, first one that inc's the value and one that doubles
+        ; the value. The funtions will be iterated over to produce the number 6 (* (+ 1 2) 2).
+        ; This one may be a bit tricky. Check solution branch of got to next if you get stuck.
         (doseq [f [inc (partial * 2)]]
           (swap! a f))
         @a => 6))
