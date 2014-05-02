@@ -76,28 +76,28 @@
          false) false
 
        (if nil
-         "nil is truthy"
-         "nil is falsey") "nil is falsey"
+         true
+         false) false
 
        (if true
-         "true is truthy"
-         "true is falsey") "true is truthy"
+         true
+         false) true
 
        (if false
-         "false is truthy"
-         "false is falsey") "false is falsey"
+         true
+         false) false
 
        (if '(1)
-         "list is truthy"
-         "list is falsey") "list is truthy"
+         true
+         false) true
 
        (if '()
-         "empty list is truthy"
-         "empty list is falsey") "empty list is truthy"
+         true
+         false) true
 
        (if (Object.)
-         "Object is truthy"
-         "Object is falsey") "Object is truthy"))
+         true
+         false) true))
 
 
 (deftest dealing-with-lists
