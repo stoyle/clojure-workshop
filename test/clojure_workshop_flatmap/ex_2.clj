@@ -6,11 +6,12 @@
 (defn __ [& args] false)
 (def ___ '())
 
+
 (fact "A couple of things about midje"
       1 => 1
       (throw (Exception.)) => (throws Exception))
 
-;; ffirst second
+
 (fact "working with seqs is pretty simple"
       ; how to get the head element of a seq
       (first [1 2 3]) => 1
@@ -27,23 +28,28 @@
       ; Get the next of the first element
       (nfirst [[1 2][3 4]]) => [2]
       ; Get the first of the next element?
-      (fnext [[1 2] 3 4]) => 3
-      (fnext [[1 2] [3 4]]) => [3 4]
-      (fnext []) => nil)
+      (fnext [[1 2] 3 4]) => 3)
+
 
 (fact "Some functions blow up if you dont use them correctly"
   (nth [1 2 3] 1) => 2
-  (nth [1 2 3] 4) => (throws Exception)
-  (nth [1 2 3] 4 nil) => nil)
+  ; Fetch something out of range
+  (nth [1 2 3] 3) => (throws Exception)
+  ; It is possible to give a default value when out of range, how do you do that?
+  (nth [1 2 3] 3 nil) => nil)
+
 
 (fact "Not all functions are meant to work with sequences, but you can always apply them"
-      (apply map inc [[1 2 3]]) => [2 3 4]
+      ; Which function to you use to create a string?
       (apply str "1 2 3 " [4 " " 5 " " 6]) => "1 2 3 4 5 6")
+
 
 (fact "After a let (fn, defn), you can do side-effect"
       (let [a (atom 0)]
+        ; Swapping atom state is pretty simple
         (swap! a inc)
         (deref a) => 1))
+
 
 (fact "You want to 'do times' x with the swap! function"
       (let [a (atom 0)]
@@ -51,39 +57,62 @@
           (swap! a inc))
         @a => 10))
 
+
 (fact "You want to do over a seq of functions the with swap! function"
       (let [a (atom 2)]
         (doseq [f [inc (partial * 2)]]
           (swap! a f))
         @a => 6))
 
-(fact "You want to inc while not at the correct value"
+
+(fact "You want to inc until the correct value"
       (let [a (atom 0)]
         (while (> 6 @a)
           (swap! a inc))
         @a => 6))
 
-; map filter reduce
 
 (fact "Filter removes values from a sequence"
+      ; Get the odd elements
       (filter odd? [0 1 2 3 4 5 6 7 8 9]) => [1 3 5 7 9]
+      ; Get the even elements
       (filter even? (take 10 (range))) => [0 2 4 6 8]
+      ; Remove the nil which does not really have an identity
       (filter identity [1 2 3 nil 5]) => [1 2 3 5])
 
-(fact "Use map to transform each element a list"
+
+(fact "remove is the opposite of filter"
+      ; Remove odd
+      (remove odd? [0 1 2 3 4 5 6 7 8 9]) => [0 2 4 6 8]
+      ; Remove even
+      (remove even? (take 10 (range))) => [1 3 5 7 9]
+      ; Remove all elements which does have an identity
+      (remove identity [1 2 3 nil 5]) => [nil])
+
+
+(fact "Use map to transform/convert/map each element a list"
+      ; Which function can be used to create a string from anything?
       (map str [1 2 3]) => ["1" "2" "3"]
+      ; Now increment each element, before converting it to a string. Use s function literal.
       (map #(str (inc %)) [1 2 3]) => ["2" "3" "4"]
+      ; The comp function is pretty cool at composing functions, try it!
+      (map (comp str inc) [1 2 3]) => ["2" "3" "4"]
+      ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
-(fact "Map can be used with multiple collections. How do you get the index of value in a collection?"
+
+(fact "Map can be used with multiple collections. How can you simply get the index of value in a collection?"
       (map vector (range) [:a :b :c]) => [[0 :a] [1 :b] [2 :c]])
 
+
 (fact "With reduce you can do more"
-      (reduce
-       #((memfn toUpperCase) (str %1 " " %2)) ["a" "simple" "sentence"])
-       => "A SIMPLE SENTENCE"
-      (reduce
-              #(conj %1 ((memfn toUpperCase) %2)) [] ["a" "simple" "sentence"])
-       => ["A" "SIMPLE" "SENTENCE"])
-
-
+      ; Function to add stuff together
+      (reduce + [1 2 3]) => 6
+      ; Write out a funtion that take a staring
+      (reduce (fn [r x] (conj r x)) [1] [2 3 4]) => [1 2 3 4]
+      ; Can this be written simpler? Without a function literal? Just use the function directly...
+      (reduce conj [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
+      ; How about creating a string on the fly with reduce? Try writing with funtion literal
+      (reduce #((memfn toUpperCase) (str %1 %2)) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
+      ; Now, how about using comp for the same task?
+      (reduce (comp (memfn toUpperCase) str) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
