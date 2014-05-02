@@ -28,7 +28,7 @@
 (defn read-file
   "Reads a file from disk. What is the easiest way? (Opposite of spit)"
   [f]
-  (slurp f))
+  nil)
 
 (defn cat
   "Takes state (opts) and text to be formatted as params. Returns a vector of current state and text
@@ -41,7 +41,7 @@
     (:num-non-blank-lines state) (number-non-blank-lines state text)
     (:num-all-lines state) (number-lines state text)
     ; in else you should just return a vector of state and the text
-    :else [state text]))
+    :else nil))
 
 
 
@@ -52,12 +52,11 @@
   [state text]
   (let [lines (split-retain-empty-lines text)
         ; Fetch :line-cnt from state map or 1
-        current-cnt (:line-cnt state 1)
+        current-cnt 0
         ; Convert/map over lines. All lines should get a number, use format-line to format.
-        formatted-lines (map format-line lines
-                             (iterate inc current-cnt))
+        formatted-lines nil
         ; What is the next count?
-        cnt (+ current-cnt (count lines))]
+        cnt 0]
     [(assoc state :line-cnt cnt)
      (str/join \newline formatted-lines)]))
 
@@ -68,14 +67,10 @@
   [state text]
   (let [lines (split-retain-empty-lines text)
         ; Fetch :line-cnt from state map or 1
-        current-cnt (:line-cnt state 1)
+        current-cnt 0
         ; Convert/map/reduce over lines. Only add numbering on lines with content.
         ; Use format-line Should also get number added.
-        [cnt formatted-lines] (reduce (fn [[n xs] x]
-                                        (if-not (= "" x)
-                                          [(inc n) (conj xs (format-line x n))]
-                                          [n (conj xs "")]))
-                                      [current-cnt []] lines)]
+        [cnt formatted-lines] [0 nil]]
     [(assoc state :line-cnt cnt)
      (str/join \newline formatted-lines)]))
 
