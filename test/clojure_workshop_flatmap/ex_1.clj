@@ -122,7 +122,15 @@
        (apply - [4 3 2 1]) -2
        (apply * [1 2 3 4]) 24))
 
+(deftest define-a-function-that-checks-string-longer-than
+  ; Write a function in the let form that that checks that the input String is longer than number input.
+  (let [longer-than? #(> (count %1) %2)]
+    (are [x y] (= x y)
+         (longer-than? "long string" 5) true
+         (longer-than? "short" 5) false
+         (longer-than? nil 2) false)))
 
+;; The following two tests are a sneap peak of the next section
 (deftest how-to-filter-out-the-stuff-you-want
   (are [x y] (= x y)
        ; Filter is cool. Can you write or use a cool function to get correct result?
@@ -136,13 +144,3 @@
     (are [x y] (= x y)
          (map double '(1 2 3)) '(2 4 6)
          (map double '(5 10 15)) '(10 20 30))))
-
-
-(deftest define-a-function-that-checks-string-longer-than
-  ; Write a function in the let form that that checks that the input String is longer than number input.
-  (let [longer-than? #(> (count %1) %2)]
-    (are [x y] (= x y)
-         (longer-than? "long string" 5) true
-         (longer-than? "short" 5) false
-         (longer-than? nil 2) false)))
-
