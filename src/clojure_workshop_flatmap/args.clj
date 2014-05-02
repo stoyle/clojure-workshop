@@ -3,7 +3,7 @@
             [clojure.tools.cli :as cli]))
 
 (defn usage [options-summary]
-  (->> ["usage: cat [-benstuv] [file ...]"
+  (->> ["usage: cat [-bnh] [file ...]"
         ""
         "The cat utility reads files sequentially, writing them to the standard output.  The file operands are processed in command-line order.  If file is a single dash (`-') or"
         "absent, cat reads from the standard input.  If file is a UNIX domain socket, cat connects to it and then reads it until EOF.  This complements the UNIX domain binding capa-"
@@ -15,8 +15,8 @@
 
 (def cli-options
   ;; An option with a required argument
-  [["-b" nil "Number the non-blank output lines, starting at 1." :id :num-non-blank]
-   ["-n" nil "Number the output lines, starting at 1." :id :num-blank]
+  [["-b" nil "Number the non-blank output lines, starting at 1." :id :num-non-blank-lines]
+   ["-n" nil "Number the output lines, starting at 1." :id :num-all-lines]
    ["-h" "--help" "Display usage help"]])
 
 (defn exit [status msg]
