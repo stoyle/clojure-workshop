@@ -6,53 +6,44 @@
 ;; e.g. (macroexpand '(infix-s (1 + 2)))
 
 (defmacro infix-s [form]
-  `(~(second form) ~(first form) ~(nth form 2)))
+  form)
 
-
+#_
 (fact "Should handle simple infix"
       (infix-s (1 + 2)) => 3
       (macroexpand '(infix-s (1 + 2))) => '(+ 1 2))
 
 
 (defmacro infix-v [& forms]
-  `(~(second forms) ~(first forms) ~(nth forms 2)))
+  forms)
 
-
+#_
 (fact "Should handle variable arity infix"
       (infix-v 1 + 2) => 3)
 
 
 (defmacro infix-g
   ([& forms]
-   (let [s (if (seq? (first forms)) (first forms) forms)]
-     `(~(second s) ~(first s) ~(nth s 2)))))
+   forms))
 
-
+#_
 (fact "Should both variable and fixed arity"
       (infix-g 1 + 2) => 3
       (infix-g (1 + 2)) => 3)
 
 
 (defmacro infix-r [form]
-  (cond (not (seq? form)) form
-        (= 1 (count form)) `(infix-r ~(first form))
-        :else
-        (let [operator (second form)
-              first-arg (first form)
-              others (nnext form)]
-          `(~operator
-            (infix-r ~first-arg)
-            (infix-r ~others)))))
+  form)
 
-
+#_
 (fact "Should handle recurisve infix"
       (infix-r (1 + 2 + 3)) => 6)
 
 
 (defmacro infix-rg [& form]
-  `(infix-r ~form))
+  form)
 
-
+#_
 (fact "Should handle virable arity recurisve infix"
       (infix-rg 1 + 2 + 3) => 6
       (infix-rg (1 + 2 + 3)) => 6
