@@ -3,23 +3,21 @@
             [clojure.tools.cli :as cli]))
 
 (defn usage [options-summary]
-  (->> ["Usage: tac [OPTION]... [FILE]..."
-        "Write each FILE to standard output, last line first"
-        "With no FILE, or when FILE is -, read standard input."
+  (->> ["usage: cat [-benstuv] [file ...]"
         ""
-        "Mandatory arguments to long options are mandatory for short options too."
+        "The cat utility reads files sequentially, writing them to the standard output.  The file operands are processed in command-line order.  If file is a single dash (`-') or"
+        "absent, cat reads from the standard input.  If file is a UNIX domain socket, cat connects to it and then reads it until EOF.  This complements the UNIX domain binding capa-"
+        "bility available in inetd(8)."
+        ""
+        "The options are as follows:"
         options-summary]
        (str/join \newline)))
 
 (def cli-options
   ;; An option with a required argument
-  [["-b" "--before before" "attach the separator before instead of after"]
-   ["-r" "--regex" "interpret the separator as a regular expression"]
-   ["-s" "--separator separator" "use separator as the separator instead of newline"
-    :default "\n"]
-   ;; A boolean option defaulting to nil
-   [nil "--help" "display this help and exit"]
-   [nil "--version" "output version information and exit"]])
+  [["-b" nil "Number the non-blank output lines, starting at 1." :id :num-non-blank]
+   ["-n" nil "Number the output lines, starting at 1." :id :num-blank]
+   ["-h" "--help" "Display usage help"]])
 
 (defn exit [status msg]
   (println msg)
@@ -34,7 +32,6 @@
     ;; Handle help and error conditions
     (cond
       (:help options) (exit 0 (usage summary))
-      (:version options) (exit 0 "0.1.0-SNAPSHOT")
       errors (exit 1 (error-msg errors))
       :else (assoc options :files (seq arguments)))))
 

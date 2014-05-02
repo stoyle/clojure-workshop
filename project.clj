@@ -7,8 +7,8 @@
             :url "http://creativecommons.org/licenses/by/4.0/"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.cli "0.3.1"]]
-  :main clojure-workshop-flatmap.tac
+  :main clojure-workshop-flatmap.cat
   :aot :all
-  :uberjar-name "tac.jar"
+  :uberjar-name "cat.jar"
   :profiles {:dev {:dependencies [[midje "1.6.3"]]
                    :plugins [[lein-midje "3.1.1"]]}})
