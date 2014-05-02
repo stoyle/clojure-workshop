@@ -14,9 +14,8 @@
       (macroexpand '(infix-s (1 + 2))) => '(+ 1 2))
 
 
-(defmacro infix-v
-  ([& forms]
-   `(~(second forms) ~(first forms) ~(nth forms 2))))
+(defmacro infix-v [& forms]
+  `(~(second forms) ~(first forms) ~(nth forms 2)))
 
 
 (fact "Should handle variable arity infix"
