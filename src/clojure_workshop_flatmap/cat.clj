@@ -40,6 +40,7 @@
   (cond
     (:num-non-blank-lines state) (number-non-blank-lines state text)
     (:num-all-lines state) (number-lines state text)
+    ; in else you should just return a vector of state and the text
     :else [state text]))
 
 
@@ -50,9 +51,12 @@
   a new state with a new :line-cnt, and the formatted-lines."
   [state text]
   (let [lines (split-retain-empty-lines text)
+        ; Fetch :line-cnt from state map or 1
         current-cnt (:line-cnt state 1)
+        ; Convert/map over lines. All lines should get a number, use format-line to format.
         formatted-lines (map format-line lines
                              (iterate inc current-cnt))
+        ; What is the next count?
         cnt (+ current-cnt (count lines))]
     [(assoc state :line-cnt cnt)
      (str/join \newline formatted-lines)]))
@@ -62,8 +66,11 @@
   line. If a line is non-empty it will be prefixed with its number starting with 1. Returns a
   vector containing a new state with a new :line-cnt, and the formatted-lines."
   [state text]
-  (let [current-cnt (:line-cnt state 1)
-        lines (split-retain-empty-lines text)
+  (let [lines (split-retain-empty-lines text)
+        ; Fetch :line-cnt from state map or 1
+        current-cnt (:line-cnt state 1)
+        ; Convert/map/reduce over lines. Only add numbering on lines with content.
+        ; Use format-line Should also get number added.
         [cnt formatted-lines] (reduce (fn [[n xs] x]
                                         (if-not (= "" x)
                                           [(inc n) (conj xs (format-line x n))]
