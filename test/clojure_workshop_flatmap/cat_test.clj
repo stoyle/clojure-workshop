@@ -5,12 +5,16 @@
 
 #_
 (fact "read-file should actually read file contets"
-      (read-file "project.clj") => not-empty)
+      (read-file "test-resources/file1.txt") => "en\nto\ntre\n")
 
 #_
 (fact "cat should return its input and state in a vector"
       (cat {} "1\n2") => [{} "1\n2"]
       (cat {:state 1} "1\n2") => [{:state 1} "1\n2"])
+
+(fact "cat-files should be able to handle many files"
+      (cat-files {} ["test-resources/file1.txt" "test-resources/file2.txt"])
+        => "en\nto\ntre\n\nfire\nfem\nseks\n")
 
 #_
 (fact "Should number all lines"

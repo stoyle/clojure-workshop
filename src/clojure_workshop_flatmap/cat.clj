@@ -22,6 +22,7 @@
 ;; You should implement the functions starting with (in increasing difficulty)
 ;; * read-file
 ;; * cat
+;; * cat-files (after this you have the simplest version of cat!. try 'lein uberjar', and you can run 'java -jar target/cat.jar -h'
 ;; * number-lines
 ;; * number-non-blank-lines
 
@@ -75,9 +76,9 @@
      (str/join \newline formatted-lines)]))
 
 (defn cat-files
-  "Takes options and a set of filenames to handle. First reads each file to text, then converts text
+  "Takes options and a set of filenames to handle. First reads/conerts each file to text, then converts text
   for each file over cat. Then converts each result vector to only the text (the second part of cat
-  result. Finally joins these with a \newline."
+  result). Finally joins these with a \newline (check out clojure.string functions)."
   [opts files]
   (str/join \newline
     (map second
