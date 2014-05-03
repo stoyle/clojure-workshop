@@ -12,6 +12,7 @@
       (cat {} "1\n2") => [{} "1\n2"]
       (cat {:state 1} "1\n2") => [{:state 1} "1\n2"])
 
+#_
 (fact "cat-files should be able to handle many files"
       (cat-files {} ["test-resources/file1.txt" "test-resources/file2.txt"])
         => "en\nto\ntre\n\nfire\nfem\nseks\n")
