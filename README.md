@@ -33,7 +33,7 @@ git clone https://gitlab.com/stoyle/clojure-workshop-flatmap.git
 Execute the following command in the workspace:
 
 ```
-lein do clean, deps, midje, install
+lein do clean, deps, midje, uberjar, install
 ```
 
 ## Open Light Table
