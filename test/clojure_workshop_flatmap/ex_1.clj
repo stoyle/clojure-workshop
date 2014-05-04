@@ -105,6 +105,7 @@
        ; Should be able to use one simple function call to get result
        (first '(1 2 3 4))  1
        (last '(1 2 3 4 5)) 5
+       ; Taking a part of a list is simple
        (take 2 '(1 2 3 4)) '(1 2)))
 
 
