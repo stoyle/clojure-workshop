@@ -69,8 +69,8 @@
   (let [lines (split-retain-empty-lines text)
         ; Fetch :line-cnt from state map or 1
         current-cnt 0
-        ; Convert/map/reduce over lines. Only add numbering on lines with content.
-        ; Use format-line Should also get number added.
+        ; Convert/map/reduce over lines. Only add numbering on lines with content. Use format-line to format.
+        ; In proposed solution, we fetch both formattes lines and the new cnt in the same function.
         [cnt formatted-lines] [0 nil]]
     [(assoc state :line-cnt cnt)
      (str/join \newline formatted-lines)]))
