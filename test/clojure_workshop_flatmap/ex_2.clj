@@ -111,7 +111,7 @@
 (fact "With reduce you can do more"
       ; Function to add stuff together
       (reduce __ [1 2 3]) => 6
-      ; Write out a funtion that take a staring
+      ; Write out a funtion that take a staring list and conjoins resulting list
       (reduce __ [1] [2 3 4]) => [1 2 3 4]
       ; Can this be written simpler? Without a function literal? Just use the function directly...
       (reduce __ [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
