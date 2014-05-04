@@ -30,27 +30,31 @@ git clone https://gitlab.com/stoyle/clojure-workshop-flatmap.git
 
 ## Make leiningen fetch necessary dependencies
 
-Execute the following command in the workspace:
+Execute the following command in the downloaded git workspace:
 
 ```
 lein do clean, deps, midje, uberjar, install
 ```
 
-## Open Light Table
+## Setup workspace in Light Table
 
 Open project in Light Table`
 
 ```
-File -> Open Folder -> Navigate to folder where you have checked out the project.
+File -> Open Folder -> Navigate to folder where you have checked out the project -> Press upload on the workspace folder.
 ```
 
 Start a repl at project. Open a Clojure namespace and evaluate:
 
 ```
-"Test/clojure-workshop-flatmap/ex-1" -> Press "Cmd-shift-enter"/"Ctrl-shift-enter".
+"Test/clojure-workshop-flatmap/ex-1" -> Press "Cmd-shift-enter" (Mac) / "Ctrl-shift-enter" (Windows/Linux).
 ```
 
 This may take a little time. You will see inline light grey markings in the file.
+
+## Problems?
+
+Don't hesitate to contact me at alf.kristian@kodemaker.no.
 
 ## License
 
