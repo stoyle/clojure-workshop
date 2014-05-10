@@ -62,7 +62,7 @@
       (let [a (atom 2)]
         ; Create a vector of two functions, first one that inc's the value and one that doubles
         ; the value. The funtions will be iterated over to produce the number 6 (* (+ 1 2) 2).
-        ; This one may be a bit tricky. Check solution branch of got to next if you get stuck.
+        ; This one may be a bit tricky. Check solution branch, or just skip to next, if you get stuck.
         (doseq [f [__ __]]
           (swap! a f))
         @a => 6))
