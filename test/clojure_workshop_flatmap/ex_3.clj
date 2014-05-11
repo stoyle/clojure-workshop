@@ -45,7 +45,7 @@
             (infix-r ~others)))))
 
 
-(fact "Should handle recurisve infix"
+(fact "Should handle recursive infix"
       (infix-r (1 + 2 + 3)) => 6)
 
 
@@ -53,7 +53,7 @@
   `(infix-r ~form))
 
 
-(fact "Should handle virable arity recurisve infix"
+(fact "Should handle variable arity recurisve infix"
       (infix-rg 1 + 2 + 3) => 6
       (infix-rg (1 + 2 + 3)) => 6
       (infix-rg (10 + (2 * 3) + (4 * 5))) => 36)
