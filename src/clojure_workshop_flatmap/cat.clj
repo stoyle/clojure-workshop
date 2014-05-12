@@ -1,9 +1,8 @@
 (ns clojure-workshop-flatmap.cat
   (:gen-class)
-    (:import (java.util.regex Pattern))
-    (:require
-      [clojure-workshop-flatmap.args :as args]
-      [clojure.string :as string]))
+  (:require
+    [clojure-workshop-flatmap.args :as args]
+    [clojure.string :as string]))
 
 (defn split-retain-empty-lines
   "Splits a line into a seq, where empty lines are retaines as an empty string \"\""
