@@ -45,6 +45,12 @@
     :else nil))
 
 
+(defn cat-files
+  "Takes options and a set of filenames to handle. First reads/converts each file to text, then converts text
+  for each file over cat. Then converts each result vector to only the text (the second part of cat
+  result). Finally joins these with a \newline (check out clojure.string functions)."
+  [opts files]
+  nil)
 
 (defn number-lines
   "Takes state (potentially containg a current :line-count) and text  and formats it using format
@@ -74,13 +80,6 @@
         [cnt formatted-lines] [0 nil]]
     [(assoc state :line-cnt cnt)
      (str/join \newline formatted-lines)]))
-
-(defn cat-files
-  "Takes options and a set of filenames to handle. First reads/conerts each file to text, then converts text
-  for each file over cat. Then converts each result vector to only the text (the second part of cat
-  result). Finally joins these with a \newline (check out clojure.string functions)."
-  [opts files]
-  nil)
 
 (defn cat-in
   "Loops over system/in until ctrl-d is pressed converting input to cat for each new line"
