@@ -3,12 +3,12 @@
     (:import (java.util.regex Pattern))
     (:require
       [clojure-workshop-flatmap.args :as args]
-      [clojure.string :as str]))
+      [clojure.string :as string]))
 
 (defn split-retain-empty-lines
   "Splits a line into a seq, where empty lines are retaines as an empty string \"\""
   [text]
-  (str/split text #"\r?\n"))
+  (string/split text #"\r?\n"))
 
 (defn format-line
   "Formats lines with prefixed numbering"
@@ -49,7 +49,7 @@
   for each file over cat. Then converts each result vector to only the text (the second part of cat
   result). Finally joins these with a \newline (check out clojure.string functions)."
   [opts files]
-  (str/join \newline
+  (string/join \newline
     (map second
          (map (partial cat opts)
               (map read-file files)))))
@@ -68,7 +68,7 @@
         ; What is the next count?
         cnt (+ current-cnt (count lines))]
     [(assoc state :line-cnt cnt)
-     (str/join \newline formatted-lines)]))
+     (string/join \newline formatted-lines)]))
 
 (defn number-non-blank-lines
   "Takes state (potentially containg a current :line-count) and text and formats it using format
@@ -86,7 +86,7 @@
                                           [n (conj xs "")]))
                                       [current-cnt []] lines)]
     [(assoc state :line-cnt cnt)
-     (str/join \newline formatted-lines)]))
+     (string/join \newline formatted-lines)]))
 
 (defn cat-in
   "Loops over system/in until ctrl-d is pressed converting input to cat for each new line"

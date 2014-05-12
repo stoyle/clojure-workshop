@@ -1,7 +1,6 @@
 (ns clojure-workshop-flatmap.cat-test
   (:use midje.sweet
-        clojure-workshop-flatmap.cat)
-  (:require [clojure.string :as str]))
+        clojure-workshop-flatmap.cat))
 
 
 (fact "read-file should actually read file contets"
