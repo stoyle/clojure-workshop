@@ -1,6 +1,5 @@
 (ns clojure-workshop-flatmap.ex-2
-  (:use [midje.sweet])
-  (:require [clojure.string :as str]))
+  (:use [midje.sweet]))
 
 (def _ 0)
 (defn __ [& args] false)

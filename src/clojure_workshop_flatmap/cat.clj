@@ -3,12 +3,12 @@
     (:import (java.util.regex Pattern))
     (:require
       [clojure-workshop-flatmap.args :as args]
-      [clojure.string :as str]))
+      [clojure.string :as string]))
 
 (defn split-retain-empty-lines
   "Splits a line into a seq, where empty lines are retaines as an empty string \"\""
   [text]
-  (str/split text #"\r?\n"))
+  (string/split text #"\r?\n"))
 
 (defn format-line
   "Formats lines with prefixed numbering"
@@ -65,7 +65,7 @@
         ; What is the next count?
         cnt 0]
     [(assoc state :line-cnt cnt)
-     (str/join \newline formatted-lines)]))
+     (string/join \newline formatted-lines)]))
 
 (defn number-non-blank-lines
   "Takes state (potentially containg a current :line-count) and text and formats it using format
@@ -79,7 +79,7 @@
         ; In proposed solution, we fetch both formattes lines and the new cnt in the same function.
         [cnt formatted-lines] [0 nil]]
     [(assoc state :line-cnt cnt)
-     (str/join \newline formatted-lines)]))
+     (string/join \newline formatted-lines)]))
 
 (defn cat-in
   "Loops over system/in until ctrl-d is pressed converting input to cat for each new line"
