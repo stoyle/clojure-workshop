@@ -1,8 +1,8 @@
-(ns clojure-workshop-flatmap.cat
+(ns clojure-workshop.cat
   (:gen-class)
   (:import (java.util.regex Pattern))
   (:require
-    [clojure-workshop-flatmap.args :as args]
+    [clojure-workshop.args :as args]
     [clojure.string :as string]))
 
 (defn split-retain-empty-lines
@@ -17,7 +17,7 @@
 
 (declare number-lines number-non-blank-lines read-file)
 
-;; Check out tests in clojure-workshop-flatmap.cat-test, comment them in one by one, which should
+;; Check out tests in clojure-workshop.cat-test, comment them in one by one, which should
 ;; Help you build your cat program.
 ;; You should implement the functions starting with (in increasing difficulty)
 ;; * read-file

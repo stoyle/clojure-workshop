@@ -1,4 +1,4 @@
-(ns clojure-workshop-flatmap.args
+(ns clojure-workshop.args
   (:require [clojure.string :as str]
             [clojure.tools.cli :as cli]))
 

@@ -1,4 +1,4 @@
-(ns clojure-workshop-flatmap.ex-1
+(ns clojure-workshop.ex-1
   (:require [clojure.test :refer :all]))
 
 ; Placeholders do not touch.
