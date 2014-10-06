@@ -12,8 +12,13 @@
 
 (defn format-line
   "Formats lines with prefixed numbering"
-  [line num]
+  [num line]
   (format "%6d %s" num line))
+
+(defn infinite-coll-from
+  "Creates infinite lazy seq incremente by one, starts with start"
+  [start]
+  (iterate inc start))
 
 (declare number-lines number-non-blank-lines read-file)
 
@@ -63,9 +68,11 @@
         ; Fetch :line-cnt from state map or 1
         current-cnt (:line-cnt state 1)
         ; Convert/map over lines. All lines should get a number, use format-line to format.
-        formatted-lines (map format-line lines
-                             (iterate inc current-cnt))
-        ; What is the next count?
+        ; Hint map can take several arguments (collections), and check out infinite-coll-from.
+        ; Another approach is to use map-indexed, just get the numbering straight.
+        formatted-lines (map format-line
+                             (infinite-coll-from current-cnt) lines)
+        ; What is the next count (for the next file)?
         cnt (+ current-cnt (count lines))]
     [(assoc state :line-cnt cnt)
      (string/join \newline formatted-lines)]))
@@ -80,10 +87,17 @@
         current-cnt (:line-cnt state 1)
         ; Convert/map/reduce over lines. Only add numbering on lines with content. Use format-line to format.
         ; In proposed solution, we fetch both formattes lines and the new cnt in the same function.
-        [cnt formatted-lines] (reduce (fn [[n xs] x]
-                                        (if-not (= "" x)
-                                          [(inc n) (conj xs (format-line x n))]
-                                          [n (conj xs "")]))
+        ;
+        ; Outline of result (delete this if you want to try without help!)
+        ; 1. reduce over function with result [cnt formatted-lines].
+        ; 2. initial 'val' is [current-cnt []] and reduce over lines
+        ; 3. fn destructures directly, e.g. [[cnt acc] s]
+        ; 4. Check if line is "". If so simply add line to result, don't increment cnt
+        ; 5. If line is not "", format it and return a vector with cnt incremented and formatted added to acc.
+        [cnt formatted-lines] (reduce (fn [[cnt acc] s]
+                                        (if (= "" s)
+                                          [cnt (conj acc "")]
+                                          [(inc cnt) (conj acc (format-line cnt s))]))
                                       [current-cnt []] lines)]
     [(assoc state :line-cnt cnt)
      (string/join \newline formatted-lines)]))
