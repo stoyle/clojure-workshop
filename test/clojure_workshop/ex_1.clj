@@ -102,7 +102,7 @@
 #_
 (deftest dealing-with-lists
   (are [x y] (= x y)
-       ; Should be able to use one simple function call to get result
+       ; Should be able to use one simple function call to get result, what are their positions in the list?
        (__ '(1 2 3 4))  1
        (__ '(1 2 3 4 5)) 5
        ; Taking a part of a list is simple
