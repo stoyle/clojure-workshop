@@ -38,7 +38,8 @@
   (nth [1 2 3] 3 nil) => nil)
 
 
-(fact "Not all functions are meant to work with sequences, but you can always apply them"
+(fact "Not all functions are meant to work with sequences, but you can always apply them.
+      (Function to use is Clojure's version of .toString)"
       ; Which function to you use to create a string?
       (apply str "1 2 3 " [4 " " 5 " " 6]) => "1 2 3 4 5 6")
 
