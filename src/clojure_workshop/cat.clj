@@ -88,8 +88,8 @@
         ; Convert/map/reduce over lines. Only add numbering on lines with content. Use format-line to format.
         ; In proposed solution, we fetch both formattes lines and the new cnt in the same function.
         ;
-        ; Outline of result (delete this if you want to try without help!)
-        ; 1. reduce over function with result [cnt formatted-lines].
+        ; Outline of solution (delete this if you want to try without help!)
+        ; 1. reduce over function with result: [cnt formatted-lines].
         ; 2. initial 'val' is [current-cnt []] and reduce over lines
         ; 3. fn destructures directly, e.g. [[cnt acc] s]
         ; 4. Check if line is "". If so simply add line to result, don't increment cnt
