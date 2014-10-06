@@ -13,7 +13,7 @@
 (defn format-line
   "Formats lines with prefixed numbering"
   [num line]
-  (format "%6d %s" num line))
+  (format "%6d  %s" num line))
 
 (defn infinite-coll-from
   "Creates infinite lazy seq incremente by one, starts with start"
