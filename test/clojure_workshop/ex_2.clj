@@ -1,4 +1,4 @@
-(ns clojure-workshop-flatmap.ex-2
+(ns clojure-workshop.ex-2
   (:use [midje.sweet]))
 
 (def _ 0)
