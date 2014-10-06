@@ -2,7 +2,7 @@
   :description
   "Workshop material for learning clojure.
   lein uberjar in solution branch will create the tac program-"
-  :url "https://gitlab.com/stoyle/clojure-workshop"
+  :url "https://github.com/stoyle/clojure-workshop"
   :license {:name "Creative Commons Attribution 4.0 International Public License"
             :url "http://creativecommons.org/licenses/by/4.0/"}
   :dependencies [[org.clojure/clojure "1.6.0"]

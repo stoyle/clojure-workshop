@@ -26,7 +26,7 @@ Get it [here](http://www.lighttable.com/).
 
 ## Clone this project
 
-git clone https://gitlab.com/stoyle/clojure-workshop-flatmap.git
+git clone https://github.com/stoyle/clojure-workshop.git
 
 ## Make leiningen fetch necessary dependencies
 
@@ -47,7 +47,7 @@ File -> Open Folder -> Navigate to folder where you have checked out the project
 Start a repl at project. Open a Clojure namespace and evaluate:
 
 ```
-"Test/clojure-workshop-flatmap/ex-1" -> Press "Cmd-shift-enter" (Mac) / "Ctrl-shift-enter" (Windows/Linux).
+"Test/clojure-workshop/ex-1" -> Press "Cmd-shift-enter" (Mac) / "Ctrl-shift-enter" (Windows/Linux).
 ```
 
 This may take a little time. You will see inline light grey markings in the file.
