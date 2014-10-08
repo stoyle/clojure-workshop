@@ -29,7 +29,7 @@
 
 (deftest use-conjoin
   ; conjoin is a special function that works with most datastructures.
-  ; It nows where the right place is to append an element.
+  ; It knows where the right place is to append an element.
   ; Use (doc conj) for info
   ; Oh, and by the way. 'are' creates a template (using a macro),
   ; for alle the following test form, which need to be in pairs in this case.
