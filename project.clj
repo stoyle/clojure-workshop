@@ -8,8 +8,8 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.cli "0.3.1"]]
   :main clojure-workshop.cat
-  :aot :all
   :uberjar-name "cat.jar"
   :profiles {:dev {:dependencies [[midje "1.6.3"]]
                    :plugins [[lein-midje "3.1.1"]]
-                   :resource-paths ["test-resources"]}})
+                   :resource-paths ["test-resources"]}
+             :uberjar {:aot [clojure-workshop.cat]}})

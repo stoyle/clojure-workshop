@@ -1,6 +1,5 @@
 (ns clojure-workshop.cat
-  (:gen-class)
-  (:import (java.util.regex Pattern))
+  (:gen-class :main)
   (:require
     [clojure-workshop.args :as args]
     [clojure.string :as string]))
