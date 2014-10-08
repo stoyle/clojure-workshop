@@ -1,5 +1,5 @@
 (ns clojure-workshop.cat
-  (:gen-class)
+  (:gen-class :main)
   (:require
     [clojure-workshop.args :as args]
     [clojure.string :as string]))
