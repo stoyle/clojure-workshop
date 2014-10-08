@@ -25,7 +25,7 @@
   (format "%6d  %s" num line))
 
 (defn- infinite-coll-from
-  "Creates infinite lazy seq incremente by one, starts with start"
+  "Creates infinite lazy seq, starts with start integer, increments by one"
   [start]
   (iterate inc start))
 
