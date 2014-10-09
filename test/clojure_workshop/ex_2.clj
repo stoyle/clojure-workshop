@@ -96,7 +96,7 @@
 (fact "Use map to transform/convert/map each element a list"
       ; Which function can be used to create a string from anything?
       (map __ [1 2 3]) => ["1" "2" "3"]
-      ; Now increment each element, before converting it to a string. Use s function literal.
+      ; Now increment each element, before converting it to a string. Use a function literal.
       (map __ [1 2 3]) => ["2" "3" "4"]
       ; The comp function is pretty cool at composing functions, try it!
       (map __ [1 2 3]) => ["2" "3" "4"]
@@ -111,7 +111,7 @@
 (fact "With reduce you can do more"
       ; Function to add stuff together
       (reduce __ [1 2 3]) => 6
-      ; Write out a funtion that take a staring list and conjoins resulting list
+      ; Write out a funtion that take a starting list and conjoins resulting list
       (reduce __ [1] [2 3 4]) => [1 2 3 4]
       ; Can this be written simpler? Without a function literal? Just use the function directly...
       (reduce __ [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
