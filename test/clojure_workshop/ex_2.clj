@@ -105,7 +105,7 @@
       (s/upper-case (__ StringBuilder "a java string")) => "A JAVA STRING"
 
       ; What was the method which determines character at position. (hint first replace method name, and next the position)
-      (__ "a java string" 2) => \j
+      (__ "a java string" _) => \j
 
       ; Calling static methods is done with /. Join strings interleaving a space, a static method on String.
       (__ " " ["a" "java" "string"]) => "a java string"
