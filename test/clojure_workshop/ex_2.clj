@@ -78,10 +78,10 @@
 
 
 (fact "Filter removes values from a sequence"
-      ; Get the odd elements
-      (filter odd? [0 1 2 3 4 5 6 7 8 9]) => [1 3 5 7 9]
-      ; Get the even elements
-      (filter even? (take 10 (range))) => [0 2 4 6 8]
+      ; Get the positive elements
+      (filter pos? [-2 8 -10 3]) => [8 3]
+      ; Get the negative elements, from the 100 first of an infinite list.
+      (filter neg? (take 100 (iterate inc -5))) => [-5 -4 -3 -2 -1]
       ; Remove the nil which does not really have an identity
       (filter identity [1 2 3 nil 5]) => [1 2 3 5])
 
