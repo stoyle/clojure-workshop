@@ -125,7 +125,7 @@
 
       ; And not for some more java interop
       ; A java method is not a function, and cannot be passed as one. Convert .toUpperCase, but wrap in function.
-      (map #(.toUpperCase %) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
+      (map __ ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map __ ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
