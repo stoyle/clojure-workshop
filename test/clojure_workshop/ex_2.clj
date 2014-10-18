@@ -1,6 +1,8 @@
 (ns clojure-workshop.ex-2
-  (:use [midje.sweet]))
+  (:use [midje.sweet])
+  (:require [clojure.string :as s]))
 
+; Placeholders, do not touch.
 (def _ 0)
 (defn __ [& args] false)
 (def ___ '())
@@ -76,10 +78,10 @@
 
 #_
 (fact "Filter removes values from a sequence"
-      ; Get the odd elements
-      (filter __ [0 1 2 3 4 5 6 7 8 9]) => [1 3 5 7 9]
-      ; Get the even elements
-      (filter __ (take 10 (range))) => [0 2 4 6 8]
+      ; Get the positive elements
+      (filter __ [-2 8 -10 3]) => [8 3]
+      ; Get the negative elements, from the 100 first of an infinite list.
+      (filter __ (take 100 (iterate inc -5))) => [-5 -4 -3 -2 -1]
       ; Remove the nil which does not really have an identity
       (filter __ [1 2 3 nil 5]) => [1 2 3 5])
 
@@ -93,18 +95,43 @@
       (remove __ [1 2 3 nil 5]) => [nil])
 
 #_
+(fact "Java interop is pretty simple"
+      ; Java methods can be called as if they are functions in forms, e.g. by using . before method name. Convert to upper case.
+      (__ "a java string") => "A JAVA STRING"
+      ; Of course it is more idiomatic using the version from clojure.string (imported as s, e.g. s/capitalize)
+      (__ "a java string") => "A JAVA STRING"
+      ; Clojure version is more generic, because it is not bound to String. Accepts any CharacterSequence.
+      ; Creating java object is simple using the new special form.
+      (s/upper-case (__ StringBuilder "a java string")) => "A JAVA STRING"
+
+      ; What was the method which determines character at position. (hint first replace method name, and next the position)
+      (__ "a java string" 2) => \j
+
+      ; Calling static methods is done with /. Join strings interleaving a space, a static method on String.
+      (__ " " ["a" "java" "string"]) => "a java string"
+      ; And the clojure.string version?
+      (__ " " ["a" "java" "string"]) => "a java string"
+      ; Clojure version is more generic, works for any sequence
+      (__ " " [1 2 3]) => "1 2 3")
+
+#_
 (fact "Use map to transform/convert/map each element a list"
-      ; Which function can be used to create a string from anything?
+      ; Which clojure function can be used to create a string from anything?
       (map __ [1 2 3]) => ["1" "2" "3"]
       ; Now increment each element, before converting it to a string. Use a function literal.
       (map __ [1 2 3]) => ["2" "3" "4"]
       ; The comp function is pretty cool at composing functions, try it!
       (map __ [1 2 3]) => ["2" "3" "4"]
+
+      ; And not for some more java interop
+      ; A java method is not a function, and cannot be passed as one. Convert .toUpperCase, but wrap in function.
+      (map #(.toUpperCase %) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map __ ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
 #_
 (fact "Map can be used with multiple collections. How can you simply get the index of value in a collection?"
+      ; In this case you can simply use an infinite sequence as first collection
       (map vector ___ [:a :b :c]) => [[0 :a] [1 :b] [2 :c]])
 
 #_
@@ -113,9 +140,9 @@
       (reduce __ [1 2 3]) => 6
       ; Write out a funtion that take a starting list and conjoins resulting list
       (reduce __ [1] [2 3 4]) => [1 2 3 4]
-      ; Can this be written simpler? Without a function literal? Just use the function directly...
+      ; Can this be written simpler? Without a function literal? Maybe just use the function directly...
       (reduce __ [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
-      ; How about creating a string on the fly with reduce? Try writing with funtion literal
+      ; How about creating a string on the fly with reduce? Try writing with funtion literal, using the java .toUpperCase method
       (reduce __ "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
-      ; Now, how about using comp for the same task?
+      ; Now, how about using comp for the same task? Composing toghether the funtion which creates strings and the .toUpperCase method
       (reduce __ "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")

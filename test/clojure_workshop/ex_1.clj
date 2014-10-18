@@ -1,7 +1,7 @@
 (ns clojure-workshop.ex-1
   (:require [clojure.test :refer :all]))
 
-; Placeholders do not touch.
+; Placeholders, do not touch.
 (defn __ [& args] false)
 (def ___ '())
 
