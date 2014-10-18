@@ -129,7 +129,9 @@
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
 
+
 (fact "Map can be used with multiple collections. How can you simply get the index of value in a collection?"
+      ; In this case you can simply use an infinite sequence as first collection
       (map vector (range) [:a :b :c]) => [[0 :a] [1 :b] [2 :c]])
 
 
@@ -138,9 +140,9 @@
       (reduce + [1 2 3]) => 6
       ; Write out a funtion that take a starting list and conjoins resulting list
       (reduce (fn [r x] (conj r x)) [1] [2 3 4]) => [1 2 3 4]
-      ; Can this be written simpler? Without a function literal? Just use the function directly...
+      ; Can this be written simpler? Without a function literal? Maybe just use the function directly...
       (reduce conj [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
-      ; How about creating a string on the fly with reduce? Try writing with funtion literal
+      ; How about creating a string on the fly with reduce? Try writing with funtion literal, using the java .toUpperCase method
       (reduce #((memfn toUpperCase) (str %1 %2)) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
-      ; Now, how about using comp for the same task?
+      ; Now, how about using comp for the same task? Composing toghether the funtion which creates strings and the .toUpperCase method
       (reduce (comp (memfn toUpperCase) str) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
