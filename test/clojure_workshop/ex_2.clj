@@ -1,5 +1,6 @@
 (ns clojure-workshop.ex-2
-  (:use [midje.sweet]))
+  (:use [midje.sweet])
+  (:require [clojure.string :as s]))
 
 ; Placeholders, do not touch.
 (def _ 0)
@@ -94,6 +95,26 @@
       (remove identity [1 2 3 nil 5]) => [nil])
 
 
+(fact "Java interop is pretty simple"
+      ; Java methods can be called as if they are functions in forms, e.g. by using . before method name. Convert to upper case.
+      (.toUpperCase "a java string") => "A JAVA STRING"
+      ; Of course it is more idiomatic using the version from clojure.string (imported as s, e.g. s/capitalize)
+      (s/upper-case "a java string") => "A JAVA STRING"
+      ; Clojure version is more generic, because it is not bound to String. Accepts any CharacterSequence.
+      ; Creating java object is simple using the new special form.
+      (s/upper-case (new StringBuilder "a java string")) => "A JAVA STRING"
+
+      ; What was the method which determines character at position. (hint first replace method name, and next the position)
+      (.charAt "a java string" 2) => \j
+
+      ; Calling static methods is done with /. Join strings interleaving a space, a static method on String.
+      (String/join " " ["a" "java" "string"]) => "a java string"
+      ; And the clojure.string version?
+      (s/join " " ["a" "java" "string"]) => "a java string"
+      ; Clojure version is more generic, works for any sequence
+      (s/join " " [1 2 3]) => "1 2 3")
+
+
 (fact "Use map to transform/convert/map each element a list"
       ; Which function can be used to create a string from anything?
       (map str [1 2 3]) => ["1" "2" "3"]
@@ -101,9 +122,12 @@
       (map #(str (inc %)) [1 2 3]) => ["2" "3" "4"]
       ; The comp function is pretty cool at composing functions, try it!
       (map (comp str inc) [1 2 3]) => ["2" "3" "4"]
+
+      ; And not for some more java interop
+      ; A java method is not a function, and cannot be passed as one. Convert to upper case, but wrap in function.
+      (map #(.toUpperCase %) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
-
 
 (fact "Map can be used with multiple collections. How can you simply get the index of value in a collection?"
       (map vector (range) [:a :b :c]) => [[0 :a] [1 :b] [2 :c]])
