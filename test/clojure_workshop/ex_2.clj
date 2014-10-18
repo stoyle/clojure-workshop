@@ -116,7 +116,7 @@
 
 
 (fact "Use map to transform/convert/map each element a list"
-      ; Which function can be used to create a string from anything?
+      ; Which clojure function can be used to create a string from anything?
       (map str [1 2 3]) => ["1" "2" "3"]
       ; Now increment each element, before converting it to a string. Use a function literal.
       (map #(str (inc %)) [1 2 3]) => ["2" "3" "4"]
@@ -124,7 +124,7 @@
       (map (comp str inc) [1 2 3]) => ["2" "3" "4"]
 
       ; And not for some more java interop
-      ; A java method is not a function, and cannot be passed as one. Convert to upper case, but wrap in function.
+      ; A java method is not a function, and cannot be passed as one. Convert .toUpperCase, but wrap in function.
       (map #(.toUpperCase %) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
       (map (memfn toUpperCase) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"])
