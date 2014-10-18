@@ -1,6 +1,7 @@
 (ns clojure-workshop.ex-2
   (:use [midje.sweet]))
 
+; Placeholders, do not touch.
 (def _ 0)
 (defn __ [& args] false)
 (def ___ '())
