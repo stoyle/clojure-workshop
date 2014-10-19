@@ -25,7 +25,7 @@
       ; What does drop produce?
       (drop 2 [1 2 3]) => ___
       ; Drop on a too small list?
-      (drop 2 [1]) => ___
+      (drop 2 [1]) => _
       ; Get the next of the first element
       (__ [[1 2][3 4]]) => [2]
       ; Get the first of the next element?
