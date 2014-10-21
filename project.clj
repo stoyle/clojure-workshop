@@ -12,4 +12,5 @@
   :profiles {:dev {:dependencies [[midje "1.6.3"]]
                    :plugins [[lein-midje "3.1.1"]]
                    :resource-paths ["test-resources"]}
-             :uberjar {:aot [clojure-workshop.cat]}})
+             :uberjar {:aot [clojure-workshop.cat]}}
+  :jvm-opts ["-XX:-OmitStackTraceInFastThrow"])
