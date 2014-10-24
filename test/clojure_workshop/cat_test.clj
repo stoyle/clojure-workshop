@@ -12,9 +12,15 @@
       (cat {:state 1} "1\n2") => [{:state 1} "1\n2"])
 
 #_
-(fact "cat-files should be able to handle many files"
-      (cat-files {} ["test-resources/file1.txt" "test-resources/file2.txt"])
-        => "en\nto\ntre\n\nfire\nfem\nseks\n")
+(facts "about cat-files"
+
+  (fact "cat-files should be able to handle many files"
+    (cat-files {} ["test-resources/file1.txt" "test-resources/file2.txt"])
+    => "en\nto\ntre\n\nfire\nfem\nseks\n")
+
+  (fact "Cat file must call cat. Midje can check this"
+    (cat-files {} ["test-resources/file1.txt"]) => "res"
+    (provided (cat {} anything) => [{} "res"] :times 1)))
 
 #_
 (facts "-n as option produces numbered lines"
