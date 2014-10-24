@@ -107,12 +107,10 @@
       ; What was the method which determines character at position. (hint first replace method name, and next the position)
       (.charAt "a java string" 2) => \j
 
-      ; Calling static methods is done with /. Join strings interleaving a space, a static method on String.
-      (String/join " " ["a" "java" "string"]) => "a java string"
-      ; And the clojure.string version?
-      (s/join " " ["a" "java" "string"]) => "a java string"
-      ; Clojure version is more generic, works for any sequence
-      (s/join " " [1 2 3]) => "1 2 3")
+      ; Calling static methods is done with '/'. Format strings with the static format method (on java.lang.String).
+      (String/format "Calling Java methods using %s is not that %s" (into-array ["varargs" "cool"])) => "Calling Java methods using varargs is not that cool"
+      ; What is the clojure core function which formats strings?
+      (format "%s uses %s, but is a lot %s" "format" "String.format" "nicer") => "format uses String.format, but is a lot nicer")
 
 
 (fact "Use map to transform/convert/map each element a list"
