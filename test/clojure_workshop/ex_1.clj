@@ -141,7 +141,7 @@
 
 (deftest use-map-to-double-all-numbers-in-a-sequence
   ; Write a function in the let form that doubles its input
-  (let [double (partial * 2)]
+  (let [dbl (partial * 2)]
     (are [x y] (= x y)
-         (map double '(1 2 3)) '(2 4 6)
-         (map double '(5 10 15)) '(10 20 30))))
+         (map dbl '(1 2 3)) '(2 4 6)
+         (map dbl '(5 10 15)) '(10 20 30))))
