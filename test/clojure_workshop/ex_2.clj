@@ -97,12 +97,12 @@
 
 (fact "Java interop is pretty simple"
       ; Java methods can be called as if they are functions in forms, e.g. by using . before method name. Convert to upper case.
-      (.toUpperCase "a java string") => "A JAVA STRING"
+      (.toUpperCase "first java string") => "FIRST JAVA STRING"
       ; Of course it is more idiomatic using the version from clojure.string (imported as s, e.g. s/capitalize)
-      (s/upper-case "a java string") => "A JAVA STRING"
+      (s/upper-case "second java string") => "SECOND JAVA STRING"
       ; Clojure version is more generic, because it is not bound to String. Accepts any CharacterSequence.
       ; Creating java object is simple using the new special form.
-      (s/upper-case (new StringBuilder "a java string")) => "A JAVA STRING"
+      (s/upper-case (new StringBuilder "third java string")) => "THIRD JAVA STRING"
 
       ; What was the method which determines character at position. (hint first replace method name, and next the position)
       (.charAt "a java string" 2) => \j
