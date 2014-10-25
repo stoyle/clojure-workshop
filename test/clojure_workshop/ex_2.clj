@@ -121,7 +121,7 @@
       ; The comp function is pretty cool at composing functions, try it!
       (map (comp str inc) [1 2 3]) => ["2" "3" "4"]
 
-      ; And not for some more java interop
+      ; And now for some more java interop
       ; A java method is not a function, and cannot be passed as one. Convert .toUpperCase, but wrap in function.
       (map #(.toUpperCase %) ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
@@ -142,5 +142,5 @@
       (reduce conj [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
       ; How about creating a string on the fly with reduce? Try writing with funtion literal, using the java .toUpperCase method
       (reduce #((memfn toUpperCase) (str %1 %2)) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
-      ; Now, how about using comp for the same task? Composing toghether the funtion which creates strings and the .toUpperCase method
+      ; Now, how about using comp for the same task? Composing toghether the function which creates strings and the .toUpperCase method
       (reduce (comp (memfn toUpperCase) str) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
