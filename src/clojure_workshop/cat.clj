@@ -4,15 +4,6 @@
     [clojure-workshop.args :as args]
     [clojure.string :as string]))
 
-;; Check out tests in clojure-workshop.cat-test, comment them in one by one, which should
-;; Help you build your cat program.
-;; You should implement the functions starting with (in increasing difficulty):
-;; * read-file
-;; * cat (only the else part as test will show)
-;; * cat-files (after this you have the simplest version of cat!. try 'lein uberjar', and you can run 'java -jar target/cat.jar -h'
-;; * number-lines
-;; * number-non-blank-lines
-
 (defn- split-retain-empty-lines
   "Splits a line into a seq, where empty lines are retaines as an empty string \"\""
   [text]
@@ -99,6 +90,20 @@
     (when text (println text))
     (when-let [line (read-line)]
       (recur (cat state line)))))
+
+;; #################################################################################################################################
+;; Instructions:
+;;
+;; Check out tests in clojure-workshop.cat-test, comment them in one by one, which should help you build your cat program.
+;;
+;; You should implement the functions starting with (in increasing difficulty):
+;; * read-file
+;; * cat (only the else part as test will show)
+;; * cat-files (after this you have the simplest version of cat!. try 'lein uberjar', and you can run 'java -jar target/cat.jar -h'
+;; * number-lines
+;; * number-non-blank-lines
+;;
+;; #################################################################################################################################
 
 (defn -main [& args]
   (let [{files :files :as opts} (args/parse-args args)]
