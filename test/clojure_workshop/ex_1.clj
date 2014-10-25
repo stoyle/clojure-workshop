@@ -133,7 +133,8 @@
          (longer-than? "short" 5) false
          (longer-than? nil 2) false)))
 
-;; The following two tests are a sneap peak of the next section
+
+;; The following two tests are a sneak peek of the next section
 #_
 (deftest how-to-filter-out-the-stuff-you-want
   (are [x y] (= x y)
