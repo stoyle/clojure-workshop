@@ -97,12 +97,12 @@
 #_
 (fact "Java interop is pretty simple"
       ; Java methods can be called as if they are functions in forms, e.g. by using . before method name. Convert to upper case.
-      (__ "a java string") => "A JAVA STRING"
+      (__ "first java string") => "FIRST JAVA STRING"
       ; Of course it is more idiomatic using the version from clojure.string (imported as s, e.g. s/capitalize)
-      (__ "a java string") => "A JAVA STRING"
+      (__ "second java string") => "SECOND JAVA STRING"
       ; Clojure version is more generic, because it is not bound to String. Accepts any CharacterSequence.
       ; Creating java object is simple using the new special form.
-      (s/upper-case (__ StringBuilder "a java string")) => "A JAVA STRING"
+      (__ (new StringBuilder "third java string")) => "THIRD JAVA STRING"
 
       ; What was the method which determines character at position. (hint first replace method name, and next the position)
       (__ "a java string" _) => \j
@@ -121,7 +121,7 @@
       ; The comp function is pretty cool at composing functions, try it!
       (map __ [1 2 3]) => ["2" "3" "4"]
 
-      ; And not for some more java interop
+      ; And now for some more java interop
       ; A java method is not a function, and cannot be passed as one. Convert .toUpperCase, but wrap in function.
       (map __ ["a" "simple" "sentence"]) => ["A" "SIMPLE" "SENTENCE"]
       ; memfn can convert a java method to a function. Turn each element into uppercase words.
@@ -142,5 +142,5 @@
       (reduce __ [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
       ; How about creating a string on the fly with reduce? Try writing with funtion literal, using the java .toUpperCase method
       (reduce __ "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
-      ; Now, how about using comp for the same task? Composing toghether the funtion which creates strings and the .toUpperCase method
+      ; Now, how about using comp for the same task? Composing toghether the function which creates strings and the .toUpperCase method
       (reduce __ "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
