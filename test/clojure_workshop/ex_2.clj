@@ -55,7 +55,7 @@
 #_
 (fact "You want to 'do times' x with the swap! function"
       (let [a (atom 0)]
-        (__ [_ 10]
+        (__ [x 10]
           (swap! a inc))
         @a => 10))
 
