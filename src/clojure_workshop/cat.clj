@@ -82,9 +82,11 @@
     :else [state text]))
 
 (defn cat-files
-  "Takes options and a set of filenames to handle. First reads/converts each file to text, then converts text
-  for each file over cat. Then converts each result vector to only the text (the second part of cat
-  result). Finally joins these with a \newline (check out clojure.string functions)."
+  "Takes options and a set of filenames to handle, and produces one result string. It must do the following:
+  1. Map each file over read-file function, which gets file contents.
+  2. Map each file-content over the cat function (using opts as the state). Result is [\"catted string\" state].
+  3. Map each result vector over a function which fetches the second element of a the vector. Result is \"catted\" string.
+  4. Join all these strings with \newline (check out clojure.string functions)"
   [opts files]
   (string/join \newline
     (map second
