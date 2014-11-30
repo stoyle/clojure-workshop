@@ -30,11 +30,10 @@
   a new state with a new :line-cnt, and the formatted-lines."
   [state text]
   (let [lines (split-retain-empty-lines text)
-        ; Fetch :line-cnt from state map or 1
+        ; Fetch :line-cnt from state map or return default, which should be 1
         current-cnt (:line-cnt state 1)
         ; Convert/map over lines. All lines should get a number, use format-line to format.
-        ; Hint map can take several arguments (collections), and check out infinite-coll-from.
-        ; Another approach is to use map-indexed, just get the numbering straight.
+        ; Hint: map can take several arguments (collections), and check out infinite-coll-from.
         formatted-lines (map format-line
                              (infinite-coll-from current-cnt) lines)
         ; What is the next count (for the next file)?
