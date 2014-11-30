@@ -25,9 +25,9 @@ This is the editor we will use. Pretty cool with lots of innovative features. Wr
 Get it [here](http://www.lighttable.com/).
 
 ## Clone this project
-
+```
 git clone https://github.com/stoyle/clojure-workshop.git
-
+```
 ## Make leiningen fetch necessary dependencies
 
 Execute the following command in the downloaded git workspace:
@@ -38,7 +38,7 @@ lein do clean, deps, midje, uberjar, install
 
 ## Setup workspace in Light Table
 
-Open project in Light Table`
+Open project in Light Table:
 
 ```
 File -> Open Folder -> Navigate to folder where you have checked out the project -> Press upload on the workspace folder.
