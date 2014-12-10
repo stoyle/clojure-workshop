@@ -78,8 +78,8 @@
 
 (defn cat-files
   "Takes options and a set of filenames to handle, and produces one result string. It must do the following:
-  1. Map each file over read-file function, which gets file contents.
-  2. Map each file-content over the cat function (using opts as the state). Result is [\"catted string\" state].
+  1. Map each file over read-file function, which returns a sequence of file-contents.
+  2. Map each file-content over the cat function (using opts as the state). Result is [state \"catted string\"].
   3. Map each result vector over a function which fetches the second element of a the vector. Result is \"catted\" string.
   4. Join all these strings with \newline (check out clojure.string functions)"
   [opts files]

@@ -104,7 +104,7 @@
       ; Creating java object is simple using the new special form.
       (__ (new StringBuilder "third java string")) => "THIRD JAVA STRING"
 
-      ; What was the method which determines character at position. (hint first replace method name, and next the position)
+      ; What was the method which determines character at position. (hint first __ is method name (you know...the "char at" method), and next _ is the position in the string)
       (__ "a java string" _) => \j
 
       ; Calling static methods is done with '/'. Format strings with the static format method (on java.lang.String).
