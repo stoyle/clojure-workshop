@@ -5,9 +5,8 @@
 (defn usage [options-summary]
   (->> ["usage: cat [-bnh] [file ...]"
         ""
-        "The cat utility reads files sequentially, writing them to the standard output.  The file operands are processed in command-line order.  If file is a single dash (`-') or"
-        "absent, cat reads from the standard input.  If file is a UNIX domain socket, cat connects to it and then reads it until EOF.  This complements the UNIX domain binding capa-"
-        "bility available in inetd(8)."
+        "The cat utility reads files sequentially, writing them to the standard output.  The file operands are processed in command-line order.  If file is "
+        "absent, cat reads from the standard input."
         ""
         "The options are as follows:"
         options-summary]

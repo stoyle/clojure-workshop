@@ -18,11 +18,18 @@ This is the defacto Clojure build tool. It will setup almost everything for you.
 
 Get it [here](http://leiningen.org/).
 
-## Light Table
+## IntelliJ
 
-This is the editor we will use. Pretty cool with lots of innovative features. Written entirely in ClojureScript.
+If you don't have it already, cummunity edition works fine.
 
-Get it [here](http://www.lighttable.com/).
+Get it [here](https://www.jetbrains.com/idea/download/).
+
+## Cursive (IntelliJ Clojure plugin)
+
+Cursive is a still in EAP, so it is currently free. However it is a pretty good plugin.
+
+Installation instructions [here](https://cursiveclojure.com/userguide/).
+
 
 ## Clone this project
 ```
@@ -36,21 +43,34 @@ Execute the following command in the downloaded git workspace:
 lein do clean, deps, midje, uberjar, install
 ```
 
-## Setup workspace in Light Table
+## Setup project in IntelliJ
 
-Open project in Light Table:
+In IntelliJ, select "File -> New -> Project from existing sources". Navigate to wherever you checked
+out the files, select the project.clj file and click "Ok".
 
-```
-File -> Open Folder -> Navigate to folder where you have checked out the project -> Press upload on the workspace folder.
-```
+Go through wizard, defaults should be ok.
 
-Start a repl at project. Open a Clojure namespace and evaluate:
+### Setup the REPL
 
-```
-"Test/clojure-workshop/ex-1" -> Press "Cmd-shift-enter" (Mac) / "Ctrl-shift-enter" (Windows/Linux).
-```
+In IntelliJ, select "Run -> Edit configurations -> `+` -> Clojure REPL -> Local -> Ok"
 
-This may take a little time. You will see inline light grey markings in the file.
+Run the REPL (e.g. press the "play" button). You should be set up.
+
+### A few useful keybindings
+
+Cursive does not ship with any keybindings, because conflicts are hard to avoid. However using
+Cursive without bindings is not very pleasant.
+
+Key bindings are found under "Settings -> Keymap -> Clojure Keybindings". As a minimum I would
+recommend setting up bindings for:
+
+* "Load file in REPL" - Lets you evaluate an entire file, and also switch namespace.
+* "Send form before caret to REPL" - Lets you evaluate a single expression, before the caret.
+* "Send top form to REPL" - Lets you evaluate the top level expression of the position of the caret.
+
+All of these commands are available through the "Tool -> REPL" sub-menu. If you are a bit more savvy,
+I would recommend setting up all of the Par Edit bindings (slurp/barf/join/kill/splice etc.). You 
+should however be fine without these in the workshop.
 
 ## Problems?
 
@@ -58,6 +78,6 @@ Don't hesitate to contact me at alf.kristian@kodemaker.no.
 
 ## License
 
-Copyright © 2014 Alf Kristian Støyle
+Copyright © 2015 Alf Kristian Støyle
 
 Distributed under the [Creative Commons Attribution 4.0 International Public License](http://creativecommons.org/licenses/by/4.0/).

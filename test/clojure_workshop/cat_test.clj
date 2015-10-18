@@ -1,4 +1,5 @@
 (ns clojure-workshop.cat-test
+  (:refer-clojure :exclude [cat])
   (:use midje.sweet
         clojure-workshop.cat))
 
