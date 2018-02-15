@@ -1,6 +1,6 @@
 (ns clojure-workshop.ex-2
-  (:use [midje.sweet])
-  (:require [clojure.string :as s]))
+  (:require [clojure.string :as s]
+            [midje.sweet :refer :all]))
 
 ; Placeholders, do not touch.
 (def _ 0)
