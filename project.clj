@@ -11,7 +11,7 @@
   :uberjar-name "cat.jar"
   :profiles {:dev {:dependencies [[midje "1.9.2-alpha1"]
                                   [fipp "0.6.12"]]
-                   :plugins [[lein-midje "3.1.3"]]
+                   :plugins [[lein-midje "3.2.1"]]
                    :resource-paths ["test-resources"]}
              :uberjar {:aot [clojure-workshop.cat]}}
   :jvm-opts ["-XX:-OmitStackTraceInFastThrow"])
