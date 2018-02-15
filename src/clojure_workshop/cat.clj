@@ -1,6 +1,6 @@
 (ns clojure-workshop.cat
   (:refer-clojure :exclude [cat])
-  (:gen-class :main)
+  (:gen-class)
   (:require
     [clojure-workshop.args :as args]
     [clojure.string :as string]))

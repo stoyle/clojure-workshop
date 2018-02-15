@@ -1,7 +1,7 @@
 (ns clojure-workshop.cat-test
   (:refer-clojure :exclude [cat])
-  (:use midje.sweet
-        clojure-workshop.cat))
+  (:require [midje.sweet :refer :all]
+            [clojure-workshop.cat :refer :all]))
 
 #_
 (fact "read-file should actually read file contets"

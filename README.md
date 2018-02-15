@@ -2,7 +2,7 @@
 
 ## Java
 
-Of course you need Java. Java 6 or higher will suffice. 
+Of course you need Java. By now, you should be using at least Java 8.
 
 Get it [here](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
@@ -26,7 +26,7 @@ Get it [here](https://www.jetbrains.com/idea/download/).
 
 ## Cursive (IntelliJ Clojure plugin)
 
-Cursive is a still in EAP, so it is currently free. However it is a pretty good plugin.
+Cursive is a very good plugin. Unfortunately not free, but you should get a free trial.
 
 Installation instructions [here](https://cursiveclojure.com/userguide/).
 
