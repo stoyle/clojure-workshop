@@ -26,7 +26,7 @@
   nil)
 
 (defn number-lines
-  "Takes state (potentially containg a current :line-count) and text  and formats it using format
+  "Takes state (potentially containg a current :line-cnt) and text  and formats it using format
   line. Where each line is prefixed with a its number starting with 1. Returns a vector containing
   a new state with a new :line-cnt, and the formatted-lines."
   [state text]
@@ -42,7 +42,7 @@
      (string/join \newline formatted-lines)]))
 
 (defn number-non-blank-lines
-  "Takes state (potentially containg a current :line-count) and text and formats it using format
+  "Takes state (potentially containg a current :line-cnt) and text and formats it using format
   line. If a line is non-empty it will be prefixed with its number starting with 1. Returns a
   vector containing a new state with a new :line-cnt, and the formatted-lines."
   [state text]
