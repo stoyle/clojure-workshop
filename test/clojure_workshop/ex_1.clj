@@ -150,16 +150,18 @@
          (map dbl '(1 2 3)) '(2 4 6)
          (map dbl '(5 10 15)) '(10 20 30))))
 
+#_
 (deftest reduce-to-a-singular-value
   ; Write a function or use one from core, summing numbers
-  (let [sum +]
+  (let [sum __]
     (are [x y] (= x y)
          (reduce sum [1 2 3]) 6
          (reduce sum 1 [1 2 3]) 7)))
 
+#_
 (deftest reduce-to-a-collection-value
   ; Use a function from core, which adds to collections
-  (let [add-to-coll conj]
+  (let [add-to-coll __]
     (are [x y] (= x y)
          (reduce add-to-coll [0] [1 2 3]) [0 1 2 3]
          (reduce add-to-coll '() [1 2 3]) '(3 2 1))))

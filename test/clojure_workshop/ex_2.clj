@@ -145,20 +145,20 @@
       ; Now, how about using comp for the same task? Composing toghether the function which creates strings and the .toUpperCase method
       (reduce __ "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
 
-
+#_
 (fact "Threading is a nice way of breaking up operations, -> handles singular values, inserts as the first element"
       ;; First inc(rement), and then convert to str(ing)
-      (str (inc 1)) => "2"
+      (__ (__ 1)) => "2"
 
       ;; The same, but now with threading
-      (-> 1 inc str) => "2")
+      (-> 1 __ __) => "2")
 
-
+#_
 (fact "Threading is a nice way of breaking up operations, ->> handles collection values, inserts as the last element"
       ;; First inc(rement), and then convert to str(ing)
-      (map str (map inc [1 2 3])) => ["2" "3" "4"]
+      (map __ (map __ [1 2 3])) => ["2" "3" "4"]
 
       ;; The same, but now with threading
       (->> [1 2 3]
-           (map inc)
-           (map str)) => ["2" "3" "4"])
+           (map __)
+           (map __)) => ["2" "3" "4"])
