@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]))
 
 ; Placeholders, do not touch.
-(defn __ [& args] false)
+(def __ (fn [& _] false))
 (def ___ '())
 
 

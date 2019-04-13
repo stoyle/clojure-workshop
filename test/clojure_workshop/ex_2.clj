@@ -4,7 +4,7 @@
 
 ; Placeholders, do not touch.
 (def _ 0)
-(defn __ [& args] false)
+(def __ (fn [& _] false))
 (def ___ '())
 
 
