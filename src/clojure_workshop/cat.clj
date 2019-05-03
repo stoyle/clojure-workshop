@@ -6,7 +6,7 @@
     [clojure.string :as string]))
 
 (defn- split-retain-empty-lines
-  "Splits a line into a seq, where empty lines are retaines as an empty string \"\""
+  "Splits a line into a seq, where empty lines are retained as empty strings \"\""
   [text]
   (string/split text #"\r?\n"))
 
@@ -26,8 +26,8 @@
   (slurp f))
 
 (defn number-lines
-  "Takes state (potentially containg a current :line-cnt) and text  and formats it using format
-  line. Where each line is prefixed with a its number starting with 1. Returns a vector containing
+  "Takes state (potentially containing a current :line-cnt) and text and formats it using format
+  line. Each line is prefixed with its number, starting with 1. Returns a vector containing
   a new state with a new :line-cnt, and the formatted-lines."
   [state text]
   (let [lines (split-retain-empty-lines text)
@@ -43,20 +43,20 @@
      (string/join \newline formatted-lines)]))
 
 (defn number-non-blank-lines
-  "Takes state (potentially containg a current :line-cnt) and text and formats it using format
-  line. If a line is non-empty it will be prefixed with its number starting with 1. Returns a
+  "Takes state (potentially containing a current :line-cnt) and text and formats it using format
+  line. If a line is non-empty it will be prefixed with its number, starting with 1. Returns a
   vector containing a new state with a new :line-cnt, and the formatted-lines."
   [state text]
   (let [lines (split-retain-empty-lines text)
         ; Fetch :line-cnt from state map or 1
         current-cnt (:line-cnt state 1)
         ; Convert/map/reduce over lines. Only add numbering on lines with content. Use format-line to format.
-        ; In proposed solution, we fetch both formattes lines and the new cnt in the same function.
+        ; In proposed solution, we fetch both formatted lines and the new cnt in the same function.
         ;
         ; Outline of solution (delete this if you want to try without help!)
         ; 1. reduce over function with result: [cnt formatted-lines].
         ; 2. initial 'val' is [current-cnt []] and reduce over lines
-        ; 3. fn destructures directly, e.g. [[cnt acc] s]
+        ; 3. fn destructs directly, e.g. [[cnt acc] s]
         ; 4. Check if line is "". If so simply add line to result, don't increment cnt
         ; 5. If line is not "", format it and return a vector with cnt incremented and formatted added to acc.
         [cnt formatted-lines] (reduce (fn [[cnt acc] s]
@@ -73,7 +73,7 @@
    to be output.
    Should handle each option in the args/cli-options.
    :num - only number blank lines
-   :num-non-blank - only number blank line (takes presendence if both present)"
+   :num-non-blank - only number non blank lines (takes precedence if both options are present)"
   [state text]
   (cond
     (:num-non-blank-lines state) (number-non-blank-lines state text)

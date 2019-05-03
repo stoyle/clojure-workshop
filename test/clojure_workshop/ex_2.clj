@@ -32,7 +32,8 @@
       (fnext [[1 2] 3 4]) => 3)
 
 
-(fact "Some functions blow up if you dont use them correctly"
+
+(fact "Some functions blow up if you don't use them correctly"
   (nth [1 2 3] 1) => 2
   ; Fetch something out of range
   (nth [1 2 3] 3) => (throws Exception)
@@ -63,7 +64,7 @@
 (fact "You want to do over a seq of functions the with swap! function"
       (let [a (atom 2)]
         ; Create a vector of two functions, first one that inc's the value and one that doubles
-        ; the value. The funtions will be iterated over to produce the number 6 (* (+ 1 2) 2).
+        ; the value. The functions will be iterated over to produce the number 6 (* (+ 1 2) 2).
         ; This one may be a bit tricky. Check solution branch, or just skip to next, if you get stuck.
         (doseq [f [inc (partial * 2)]]
           (swap! a f))
@@ -136,13 +137,13 @@
 (fact "With reduce you can do more"
       ; Function to add stuff together
       (reduce + [1 2 3]) => 6
-      ; Write out a funtion that take a starting list and conjoins resulting list
+      ; Write out a function that take a starting list and conjoins resulting list
       (reduce (fn [r x] (conj r x)) [1] [2 3 4]) => [1 2 3 4]
       ; Can this be written simpler? Without a function literal? Maybe just use the function directly...
       (reduce conj [1 2 3] [4 5 6]) => [1 2 3 4 5 6]
-      ; How about creating a string on the fly with reduce? Try writing with funtion literal, using the java .toUpperCase method
+      ; How about creating a string on the fly with reduce? Try writing with function literal, using the java .toUpperCase method
       (reduce #((memfn toUpperCase) (str %1 %2)) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE"
-      ; Now, how about using comp for the same task? Composing toghether the function which creates strings and the .toUpperCase method
+      ; Now, how about using comp for the same task? Composing together the function which creates strings and the .toUpperCase method
       (reduce (comp (memfn toUpperCase) str) "" ["a " "simple " "sentence"]) => "A SIMPLE SENTENCE")
 
 

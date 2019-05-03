@@ -28,11 +28,11 @@
 
 
 (deftest use-conjoin
-  ; conjoin is a special function that works with most datastructures.
+  ; conjoin is a special function that works with most data structures.
   ; It knows where the right place is to append an element.
   ; Use (doc conj) for info
   ; Oh, and by the way. 'are' creates a template (using a macro),
-  ; for alle the following test form, which need to be in pairs in this case.
+  ; for all the following test forms, which need to be in pairs in this case.
   (are [x y] (= x y)
        (conj [1] 2) [1 2]
        (conj [1 2] 3 4) [1 2 3 4]

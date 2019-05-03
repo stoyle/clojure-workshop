@@ -4,7 +4,8 @@
             [clojure-workshop.cat :refer :all]))
 
 
-(fact "read-file should actually read file contets"
+
+(fact "read-file should actually read file content"
       (read-file "test-resources/file1.txt") => "en\nto\ntre\n")
 
 
@@ -42,7 +43,8 @@
                                                               "     2  to")]))
 
 
-(facts "-b as option prduces numbered non-blank lines"
+
+(facts "-b as option produces numbered non-blank lines"
 
   (fact "Should number non-empty-lines"
         (number-non-blank-lines {} "text") =>   (contains        "     1  text")
