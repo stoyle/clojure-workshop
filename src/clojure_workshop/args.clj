@@ -5,7 +5,7 @@
 (defn usage [options-summary]
   (->> ["usage: cat [-bnh] [file ...]"
         ""
-        "The cat utility reads files sequentially, writing them to the standard output.  The file operands are processed in command-line order.  If file is "
+        "The cat utility reads files sequentially, writing them to the standard output. The file operands are processed in command-line order. If file is "
         "absent, cat reads from the standard input."
         ""
         "The options are as follows:"

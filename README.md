@@ -20,7 +20,7 @@ Get it [here](http://leiningen.org/).
 
 ## IntelliJ
 
-If you don't have it already, cummunity edition works fine.
+If you don't have it already, community edition works fine.
 
 Get it [here](https://www.jetbrains.com/idea/download/).
 
