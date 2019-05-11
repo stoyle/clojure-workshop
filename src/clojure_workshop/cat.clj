@@ -56,7 +56,7 @@
         ; Outline of solution (delete this if you want to try without help!)
         ; 1. reduce over function with result: [cnt formatted-lines].
         ; 2. initial 'val' is [current-cnt []] and reduce over lines
-        ; 3. fn destructs directly, e.g. [[cnt acc] s]
+        ; 3. fn destructures directly, e.g. [[cnt acc] s]
         ; 4. Check if line is "". If so simply add line to result, don't increment cnt
         ; 5. If line is not "", format it and return a vector with cnt incremented and formatted added to acc.
         [cnt formatted-lines] (reduce (fn [[cnt acc] s]
