@@ -34,6 +34,7 @@
 #_
 (fact "Some functions blow up if you don't use them correctly"
   (nth [1 2 3] _) => 2
+
   ; Fetch something out of range
   (nth [1 2 3] _) => (throws Exception)
   ; It is possible to give a default value when out of range, how do you do that?
